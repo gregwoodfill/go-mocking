@@ -1,11 +1,12 @@
 package method
 
 import (
+	"testing"
+
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"testing"
 )
 
 func TestMain(m *testing.M) {
@@ -27,8 +28,6 @@ func (m *MockDDBClient) GetItem(input *dynamodb.GetItemInput) (*dynamodb.GetItem
 	var err error
 	if args.Error(1) != nil {
 		err = args.Error(1)
-	} else {
-		err = nil
 	}
 	return args.Get(0).(*dynamodb.GetItemOutput), err
 }
