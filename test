@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -x
+
+echo Cleaning
+echo
+go clean
+
+echo Formatting and Linting
+echo
+go fmt ./...
+go vet ./...
+
+echo Testing
+echo
+go test ./...
+
+echo Building
+echo
+go build ./...
