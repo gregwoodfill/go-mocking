@@ -62,3 +62,5 @@ func TestInfoWithFunction(t *testing.T) {
     InfoWithFunction(printFn, logString)
 }
 ```
+
+## Mocking Methods
