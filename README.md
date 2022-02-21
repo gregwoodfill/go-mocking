@@ -22,7 +22,7 @@ func MyFuncThatPrints() {
 ```go
 // test
 func TestMyFuncThatPrints() {
-    expectedLog := "hello world"
+    expectedLog := "some message"
 
     // replace the package level function with your own
     println = func (v ...[]interface{}) {
