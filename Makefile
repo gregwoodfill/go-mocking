@@ -31,14 +31,21 @@ initial:
 
 .make:
 	# directory to store files to track timestamps so that make doesn't run all targets every time
-	@mkdir .make
+	@mkdir -p .make
 
-.make/install-precommit-hooks: .pre-commit-config.yaml .make
+install-precommit: .make/install-precommit
+.make/install-precommit:
+	@pip install pre-commit
 	@touch $@
+
+install-precommit-hooks: .make/install-precommit-hooks install-precommit
+.make/install-precommit-hooks: .pre-commit-config.yaml
 	@pre-commit install
-
-.make/install-asdf: .tool-versions .make
 	@touch $@
-	@asdf install
 
-env: .make/install-precommit-hooks .make/install-asdf
+install-asdf: .make/install-asdf
+.make/install-asdf: .tool-versions
+	@asdf install
+	@touch $@
+
+env: install-precommit-hooks install-asdf
